@@ -1,17 +1,20 @@
-// const withPWA = require("next-pwa");
+const isGithubActions = process.env.GITHUB_ACTIONS || false
 
-// module.exports = withPWA({
-//   pwa: {
-//     dest: "public",
-//     register: true,
-//     skipWaiting: true,
-//   },
-// });
+let assetPrefix = ''
+let basePath = '/'
 
-const withPWA = require('next-pwa')({
-  dest: 'public'
-})
+if (isGithubActions) {
+  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
 
-module.exports = withPWA({
-  // next.js config
-})
+  assetPrefix = `/${repo}/`
+  basePath = `/${repo}`
+}
+
+module.exports = {
+  assetPrefix: assetPrefix,
+  basePath: basePath,
+  images: {
+    loader: 'imgix',
+    path: 'the "domain" of your Imigix source',
+  },
+}
