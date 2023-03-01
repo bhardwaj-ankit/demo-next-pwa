@@ -32,5 +32,5 @@ jobs:
         # https://github.com/JamesIves/github-pages-deploy-action
         uses: actions/configure-pages@v3
         with:
-          branch: gh-pages
+          branch: main
           folder: out
